@@ -14,11 +14,31 @@ class App extends React.Component {
       todos: [...this.state.todos, todo]
     });
   }
+  toggleComplete = (id) => {
+    this.setState({
+      todos: this.state.todos.map(todo=>{
+        if(todo.id === id) {
+          return {
+            ...todo,
+            isCompleted: !todo.isCompleted
+          }
+        }else{
+          return todo;
+        }
+      })
+    });
+  }
   render() {
     return (
       <div className="App">
         <TodoForm addToDos={this.addToDos} />
-        <TodoList todos={this.state.todos} />
+        {this.state.todos.map(todo => (
+          <TodoList 
+            todos={todo}
+            key={todo.id}
+            toggleComplete={()=>{this.toggleComplete(todo.id)}} 
+          />
+        ))}
       </div>
     );
   }
