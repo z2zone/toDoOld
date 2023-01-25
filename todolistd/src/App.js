@@ -3,20 +3,18 @@ import TodoForm from "./Components/TodoForm";
 import TodoList from "./Components/TodoLists";
 
 class App extends React.Component {
-
   constructor(props){
     super(props);
     this.state = {
-      todos: [],
-      filterAction: "all"
+      todos: []
     }
   }
-
   addToDos = (todo) => {
     this.setState({
       todos: [...this.state.todos, todo]
     });
   }
+<<<<<<< HEAD
 
   deleteToDos = (id) => {
     this.setState({
@@ -30,6 +28,8 @@ class App extends React.Component {
     });
   }
   
+=======
+>>>>>>> parent of 3cd7426 (add filter functionality)
   toggleComplete = (id) => {
     this.setState({
       todos: this.state.todos.map(todo=>{
@@ -44,37 +44,25 @@ class App extends React.Component {
       })
     });
   }
-
-  showTodos = (string) => {
-    this.setState({
-      filterAction: string
-    });
-  }
-
   render() {
-    let todos = [];
-    if(this.state.filterAction === "all"){
-      todos = this.state.todos;
-    } else if(this.state.filterAction === "active"){
-      todos = this.state.todos.filter(todo=>!todo.isCompleted);
-    }else if(this.state.filterAction === "completed"){
-      todos = this.state.todos.filter(todo=>todo.isCompleted);
-    }
     return (
       <div className="App">
         <TodoForm addToDos={this.addToDos} />
-        {todos.map(todo => (
+        {this.state.todos.map(todo => (
           <TodoList 
-            todo={todo}
+            todos={todo}
             key={todo.id}
             toggleComplete={()=>{this.toggleComplete(todo.id)}}
             handleDelete={()=>{this.deleteToDos(todo.id)}} 
           />
         ))}
+<<<<<<< HEAD
         <button onClick={()=>{this.showTodos("all")}}>All</button>
         <button onClick={()=>{this.showTodos("active")}}>Active</button>
         <button onClick={()=>{this.showTodos("completed")}}>Completed</button>
         <button onClick={this.deleteCompletedToDos}>Delete Completed</button>
+=======
+>>>>>>> parent of 3cd7426 (add filter functionality)
       </div>
     );
   }
