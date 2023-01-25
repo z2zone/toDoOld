@@ -5,9 +5,13 @@ export default class TodoList extends React.Component {
         super(props);
     }
     render () {
+        const {isCompleted} = this.props.todo;
         return (
-            <div>
-                {JSON.stringify(this.props.todos)}
+            <div 
+                onClick={this.props.toggleComplete}
+                style={{textDecoration: isCompleted ? "line-through" : ""}}
+            >
+                {this.props.todo.text}
             </div>
         );
     }

@@ -3,17 +3,21 @@ import TodoForm from "./Components/TodoForm";
 import TodoList from "./Components/TodoLists";
 
 class App extends React.Component {
+
   constructor(props){
     super(props);
     this.state = {
-      todos: []
+      todos: [],
+      filterAction: "all"
     }
   }
+
   addToDos = (todo) => {
     this.setState({
       todos: [...this.state.todos, todo]
     });
   }
+
   toggleComplete = (id) => {
     this.setState({
       todos: this.state.todos.map(todo=>{
@@ -28,17 +32,35 @@ class App extends React.Component {
       })
     });
   }
+
+  showTodos = (string) => {
+    this.setState({
+      filterAction: string
+    });
+  }
+
   render() {
+    let todos = [];
+    if(this.state.filterAction === "all"){
+      todos = this.state.todos;
+    } else if(this.state.filterAction === "active"){
+      todos = this.state.todos.filter(todo=>!todo.isCompleted);
+    }else if(this.state.filterAction === "completed"){
+      todos = this.state.todos.filter(todo=>todo.isCompleted);
+    }
     return (
       <div className="App">
         <TodoForm addToDos={this.addToDos} />
-        {this.state.todos.map(todo => (
+        {todos.map(todo => (
           <TodoList 
-            todos={todo}
+            todo={todo}
             key={todo.id}
             toggleComplete={()=>{this.toggleComplete(todo.id)}} 
           />
         ))}
+        <button onClick={()=>{this.showTodos("all")}}>All</button>
+        <button onClick={()=>{this.showTodos("active")}}>Active</button>
+        <button onClick={()=>{this.showTodos("completed")}}>Completed</button>
       </div>
     );
   }
