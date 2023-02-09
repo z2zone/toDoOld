@@ -14,7 +14,6 @@ class App extends React.Component {
       todos: [...this.state.todos, todo]
     });
   }
-<<<<<<< HEAD
 
   deleteToDos = (id) => {
     this.setState({
@@ -28,8 +27,6 @@ class App extends React.Component {
     });
   }
   
-=======
->>>>>>> parent of 3cd7426 (add filter functionality)
   toggleComplete = (id) => {
     this.setState({
       todos: this.state.todos.map(todo=>{
@@ -56,13 +53,10 @@ class App extends React.Component {
             handleDelete={()=>{this.deleteToDos(todo.id)}} 
           />
         ))}
-<<<<<<< HEAD
         <button onClick={()=>{this.showTodos("all")}}>All</button>
         <button onClick={()=>{this.showTodos("active")}}>Active</button>
         <button onClick={()=>{this.showTodos("completed")}}>Completed</button>
         <button onClick={this.deleteCompletedToDos}>Delete Completed</button>
-=======
->>>>>>> parent of 3cd7426 (add filter functionality)
       </div>
     );
   }
