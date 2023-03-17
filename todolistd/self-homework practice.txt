@@ -1,0 +1,8 @@
+1. Add Todo 
+2. Display Todo 
+3. Cross off Todo when clicked
+4. Show number of Todo left
+5. Delete Todo
+6. Filter all/active/complete 
+7. Delete all Todos that are complete
+8. Toggle button that cross off/on all tasks 
