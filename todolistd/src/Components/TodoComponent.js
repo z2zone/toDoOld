@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class TodoList extends React.Component {
+export default class TodoComponent extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -10,7 +10,9 @@ export default class TodoList extends React.Component {
 				<div
 					onClick={this.props.toggleComplete}
 					style={{
-						textDecoration: isCompleted ? "line-through" : "",
+						textDecoration: this.props.todo.isCompleted
+							? "line-through"
+							: "",
 					}}
 				>
 					{this.props.todo.text}

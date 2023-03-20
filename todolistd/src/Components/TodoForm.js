@@ -7,20 +7,19 @@ export default class TodoForm extends React.Component {
 			inputText: "",
 		};
 	}
+
 	handleInput = (event) => {
 		this.setState({
 			inputText: event.target.value,
 		});
 	};
+
 	handleSubmit = (event) => {
 		event.preventDefault();
-		let todo = {
-			id: new Date().valueOf(),
-			text: this.state.inputText,
-			isCompleted: false,
-		};
-		this.props.addToDos(todo);
+		this.props.addToDos(this.state.inputText);
+		this.setState({ inputText: "" });
 	};
+
 	render() {
 		return (
 			<form onSubmit={this.handleSubmit}>

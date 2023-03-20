@@ -1,6 +1,6 @@
 import React from "react";
 import TodoForm from "./Components/TodoForm";
-import TodoList from "./Components/TodoLists";
+import TodoComponent from "./Components/TodoComponent";
 
 class App extends React.Component {
 	constructor(props) {
@@ -9,9 +9,15 @@ class App extends React.Component {
 			todos: [],
 		};
 	}
+
 	addToDos = (todo) => {
+		let todoObject = {
+			id: new Date().valueOf(),
+			text: todo,
+			isCompleted: false,
+		};
 		this.setState({
-			todos: [...this.state.todos, todo],
+			todos: [...this.state.todos, todoObject],
 		});
 	};
 
@@ -41,13 +47,14 @@ class App extends React.Component {
 			}),
 		});
 	};
+
 	render() {
 		return (
 			<div className="App">
 				<TodoForm addToDos={this.addToDos} />
 				{this.state.todos.map((todo) => (
-					<TodoList
-						todos={todo}
+					<TodoComponent
+						todo={todo}
 						key={todo.id}
 						toggleComplete={() => {
 							this.toggleComplete(todo.id);
